@@ -13,11 +13,11 @@ else
 fi
 
 # build api document
-find . -name "*.md" |sed 's/.md//'|xargs -i -t aglio -i {}.md `echo $aglio` -o {}.html
+find . -name "*.apib" |sed 's/.apib//'|xargs -i -t aglio -i {}.md `echo $aglio` -o {}.html
 rm -rf /usr/share/nginx/html/*
 cp -R *.html /usr/share/nginx/html/
 
 # restart drakov
 pkill -9 drakov
 sleep 1
-drakov -f "/opt/api-blueprint/*.md" --public &
+drakov -f "/opt/api-blueprint/*.apib" --public &
