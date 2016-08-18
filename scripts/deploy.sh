@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# update api blueprint documet
 if [ -d /opt/api-blueprint ]
 then
     cd /opt/api-blueprint
@@ -11,8 +12,12 @@ else
     cd /opt/api-blueprint
 fi
 
+# build api document
 find . -name "*.md" |sed 's/.md//'|xargs -i -t aglio -i {}.md `echo $aglio` -o {}.html
-
 rm -rf /usr/share/nginx/html/*
+cp -R *.html /usr/share/nginx/html/
 
-cp -R /usr/share/nginx/html/
+# restart drakov
+pkill -9 drakov
+sleep 1
+drakov -f "/opt/api-blueprint/*.md" --public &
