@@ -1,7 +1,8 @@
 FROM centos
 
 RUN yum install -y epel-release && yum update -y && yum install -y node npm make nginx git
-RUN npm install -g aglio drakov
+RUN npm install -g cnpm --registry=https://registry.npm.taobao.org
+RUN cnpm install -g aglio drakov
 
 COPY scripts/startup.sh /usr/local/bin/
 COPY scripts/deploy.sh /usr/local/bin/
