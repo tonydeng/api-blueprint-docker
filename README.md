@@ -38,6 +38,12 @@ docker run --name api-blueprint-test -v ~/.ssh:/root/.ssh -e "repository={reposi
 
 > 通过 -v ~/.ssh:/root/.ssh 来讲本地的private key映射到Docker容器中的ROOT账号
 
+### 指定本地API Blueprint文档目录
+
+```bash
+docker run --name api-blueprint-test -v ${api-blueprint-path}:/opt/api-blueprint -p 80:80 -p 8080:8080 -p 3000:3000 -d wolfdeng/api-blueprint-docker
+```
+
 ### 指定API Blueprint文档模板风格
 
 ```bash
