@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <title>Api-blueprint-docker by tonydeng</title>
+  </head>
+
+  <body>
+    <div id="container">
+      <div class="inner">
+
+        <header>
+          <h1>Api-blueprint-docker</h1>
+          <h2>API Blueprint Docker</h2>
+        </header>
+
+        <section id="downloads" class="clearfix">
+          <a href="https://github.com/tonydeng/api-blueprint-docker/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
+          <a href="https://github.com/tonydeng/api-blueprint-docker/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
+          <a href="https://github.com/tonydeng/api-blueprint-docker" id="view-on-github" class="button"><span>View on GitHub</span></a>
+        </section>
+
+        <hr>
+
+        <section id="main_content">
+          <h1>
+<a id="api-blueprint-docker" class="anchor" href="#api-blueprint-docker" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>API Blueprint Docker</h1>
+
+<p><a href="https://hub.docker.com/r/wolfdeng/api-blueprint-docker/"><img src="https://img.shields.io/docker/stars/wolfdeng/api-blueprint-docker.svg" alt="Docker Stars"></a>
+<a href="https://hub.docker.com/r/wolfdeng/api-blueprint-docker/"><img src="https://img.shields.io/docker/pulls/wolfdeng/api-blueprint-docker.svg" alt="Docker Pulls"></a>
+<a href="https://imagelayers.io/?images=wolfdeng/api-blueprint-docker:latest"><img src="https://img.shields.io/imagelayers/image-size/wolfdeng/api-blueprint-docker/latest.svg" alt="Image Size"></a>
+<a href="https://imagelayers.io/?images=wolfdeng/api-blueprint-docker:latest"><img src="https://img.shields.io/imagelayers/layers/wolfdeng/api-blueprint-docker/latest.svg" alt="Image Layers"></a></p>
+
+<p>本Docker Image提供了三个服务。</p>
+
+<ol>
+<li>API Blueprint Document Server，基于<a href="https://github.com/nginx/nginx">Nginx</a> + <a href="https://github.com/danielgtaylor/aglio">Aglio</a>
+</li>
+<li>API Blueprint Mock Server，基于<a href="https://github.com/Aconex/drakov">Drakov</a>
+</li>
+<li>API Blueprint Document Server和Mock Server在Docker容器内部更新的Webhook，基于<a href="https://nodejs.org/">Nodejs</a>
+</li>
+</ol>
+
+<h2>
+<a id="启动" class="anchor" href="#%E5%90%AF%E5%8A%A8" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>启动</h2>
+
+<h3>
+<a id="指定api-blueprint文档git公有仓库" class="anchor" href="#%E6%8C%87%E5%AE%9Aapi-blueprint%E6%96%87%E6%A1%A3git%E5%85%AC%E6%9C%89%E4%BB%93%E5%BA%93" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>指定API Blueprint文档Git公有仓库</h3>
+
+<div class="highlight highlight-source-shell"><pre>docker run --name api-blueprint -e <span class="pl-s"><span class="pl-pds">"</span>repository={repository}<span class="pl-pds">"</span></span> -p 80:80 -p 8080:8080 -p 3000:3000 -d wolfdeng/api-blueprint-docker</pre></div>
+
+<blockquote>
+<p>通过 -e "repository={repository}" 来指定仓库，具体使用时替换{repository}为正式仓库地址即可。</p>
+</blockquote>
+
+<h3>
+<a id="指定api-blueprint文档git私有仓库" class="anchor" href="#%E6%8C%87%E5%AE%9Aapi-blueprint%E6%96%87%E6%A1%A3git%E7%A7%81%E6%9C%89%E4%BB%93%E5%BA%93" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>指定API Blueprint文档Git私有仓库</h3>
+
+<div class="highlight highlight-source-shell"><pre>docker run --name api-blueprint-test -v <span class="pl-k">~</span>/.ssh:/root/.ssh -e <span class="pl-s"><span class="pl-pds">"</span>repository={repository}<span class="pl-pds">"</span></span> -p 80:80 -p 8080:8080 -p 3000:3000 -d wolfdeng/api-blueprint-docker</pre></div>
+
+<blockquote>
+<p>通过 -v ~/.ssh:/root/.ssh 来讲本地的private key映射到Docker容器中的ROOT账号</p>
+</blockquote>
+
+<h3>
+<a id="指定api-blueprint文档模板风格" class="anchor" href="#%E6%8C%87%E5%AE%9Aapi-blueprint%E6%96%87%E6%A1%A3%E6%A8%A1%E6%9D%BF%E9%A3%8E%E6%A0%BC" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>指定API Blueprint文档模板风格</h3>
+
+<div class="highlight highlight-source-shell"><pre>docker run --name api-blueprint -e <span class="pl-s"><span class="pl-pds">"</span>aglio=--theme-template triple<span class="pl-pds">"</span></span> -e <span class="pl-s"><span class="pl-pds">"</span>repository={repository}<span class="pl-pds">"</span></span> -p 80:80 -p 8080:8080 -p 3000:3000 -d wolfdeng/api-blueprint-docker</pre></div>
+
+<blockquote>
+<p>通过 -e "aglio=--theme-template triple" 来指定aglio生成HTML的风格，比如现在指定的就是"triple"。更多aglio相应内容可以查看<a href="https://github.com/danielgtaylor/aglio#executable">Aglio文档</a></p>
+</blockquote>
+
+<h2>
+<a id="使用webhook" class="anchor" href="#%E4%BD%BF%E7%94%A8webhook" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>使用Webhook</h2>
+
+<ul>
+<li>可以简单使用CURL来进行Webhook调用</li>
+</ul>
+
+<div class="highlight highlight-source-shell"><pre>curl http://localhost:8080</pre></div>
+
+<ul>
+<li>可以在Git托管服务上指定Webhook地址</li>
+</ul>
+        </section>
+
+        <footer>
+          Api-blueprint-docker is maintained by <a href="https://github.com/tonydeng">tonydeng</a><br>
+          This page was generated by <a href="https://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
+        </footer>
+
+        
+      </div>
+    </div>
+  </body>
+</html>
