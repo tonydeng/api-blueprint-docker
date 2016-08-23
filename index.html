@@ -79,6 +79,11 @@
 </blockquote>
 
 <h3>
+<a id="指定本地api-blueprint文档目录" class="anchor" href="#%E6%8C%87%E5%AE%9A%E6%9C%AC%E5%9C%B0api-blueprint%E6%96%87%E6%A1%A3%E7%9B%AE%E5%BD%95" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>指定本地API Blueprint文档目录</h3>
+
+<div class="highlight highlight-source-shell"><pre>docker run --name api-blueprint-test -v <span class="pl-smi">${api-blueprint-path}</span>:/opt/api-blueprint -p 80:80 -p 8080:8080 -p 3000:3000 -d wolfdeng/api-blueprint-docker</pre></div>
+
+<h3>
 <a id="指定api-blueprint文档模板风格" class="anchor" href="#%E6%8C%87%E5%AE%9Aapi-blueprint%E6%96%87%E6%A1%A3%E6%A8%A1%E6%9D%BF%E9%A3%8E%E6%A0%BC" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>指定API Blueprint文档模板风格</h3>
 
 <div class="highlight highlight-source-shell"><pre>docker run --name api-blueprint -e <span class="pl-s"><span class="pl-pds">"</span>aglio=--theme-template triple<span class="pl-pds">"</span></span> -e <span class="pl-s"><span class="pl-pds">"</span>repository={repository}<span class="pl-pds">"</span></span> -p 80:80 -p 8080:8080 -p 3000:3000 -d wolfdeng/api-blueprint-docker</pre></div>
