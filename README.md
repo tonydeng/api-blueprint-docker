@@ -12,6 +12,13 @@
 1. API Blueprint Document Server和Mock Server在Docker容器内部更新的Webhook，基于[Nodejs](https://nodejs.org/)
 
 
+## 获取镜像
+
+```bash
+docker pull wolfdeng/api-blueprint-docker
+```
+
+查看镜像详细信息 [https://hub.docker.com/r/wolfdeng/api-blueprint-docker/](https://hub.docker.com/r/wolfdeng/api-blueprint-docker/)
 
 ## 启动
 
