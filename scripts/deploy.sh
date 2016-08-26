@@ -1,7 +1,5 @@
 
 cd /opt/api-blueprint
-
-
 # build api document
 find . -name "*.apib" | sed 's/.apib//' | xargs -i -t aglio -i {}.apib `echo $aglio` -o {}.html
 rm -rf /usr/share/nginx/html/*
