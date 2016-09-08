@@ -3,7 +3,7 @@ if [ -d /opt/api-blueprint ]
 then
     cd /opt/api-blueprint
 
-    if [[ -z $repository ]]; then
+    if [[ -n $repository ]]; then
         echo "git pull $repository"
         git checkout -f
         git clean -f
