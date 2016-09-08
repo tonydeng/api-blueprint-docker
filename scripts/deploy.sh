@@ -14,6 +14,7 @@ else
         echo "git clone $repository"
         git clone $repository /opt/api-blueprint
         cd /opt/api-blueprint
+		git checkout develop
 fi
 
 # convert tab and space
