@@ -4,12 +4,14 @@ then
     cd /opt/api-blueprint
 
     if [[ -z $repository ]]; then
+        echo "git pull $repository"
         git checkout -f
         git clean -f
         git pull
     fi
 
 else
+        echo "git clone $repository"
         git clone $repository /opt/api-blueprint
         cd /opt/api-blueprint
 fi
