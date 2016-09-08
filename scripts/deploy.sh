@@ -19,6 +19,7 @@ fi
 
 # convert tab and space
 sed -i 's/\t/\ \ /g' *.apib
+sed -i 's/\r//g' *.apib
 chmod 644 *.apib
 
 # build api document
