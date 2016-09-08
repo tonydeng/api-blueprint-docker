@@ -10,4 +10,4 @@ COPY scripts/webhook.js /usr/local/bin/
 
 RUN chmod -R 755 /usr/local/bin/*
 
-CMD /usr/local/bin/deploy.sh && /usr/local/bin/startup.sh
+CMD /usr/local/bin/startup.sh
