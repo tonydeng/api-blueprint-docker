@@ -22,8 +22,15 @@ chmod 644 *.apib
 
 # build api document
 find . -name "*.apib" | sed 's/.apib//'|xargs -i -t aglio -i {}.apib `echo $aglio` -o {}.html
-rm -rf /usr/share/nginx/html/*
-cp -R *.html /usr/share/nginx/html/
+
+# cp source api docs 2 nginx serve directroy
+dst=/usr/share/nginx/html
+rm -rf $dst/*
+for i in `find . | grep -v '\.git' | grep '\.html$'`; do
+        mkdir -p $dst/`dirname $i`;
+        cp -f $i $dst/$i;
+done
+
 
 # restart drakov
 pkill -9 drakov
