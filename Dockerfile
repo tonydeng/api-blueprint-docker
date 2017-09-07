@@ -2,7 +2,7 @@ FROM ubuntu
 
 ## Update system
 
-RUN ap-get update -y
+RUN apt-get update -y
 
 ## Install package
 RUN apt-get install -y npm git nginx nodejs-legacy
